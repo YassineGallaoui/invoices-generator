@@ -1,0 +1,7 @@
+// Global styles. CSS variables (--spacing-unit, --background-color,
+// --foreground-color) are provided by msccss.
+
+.container-box {
+  padding: var(--spacing-unit);
+  border-radius: var(--spacing-unit);
+}

@@ -1,0 +1,7 @@
+pnpm format || { echo "Formatting failed"; exit 1; }
+
+pnpm lint:fix || { echo "Linting failed"; exit 1; }
+
+git add .
+
+pnpm build || { echo "Build failed"; exit 1; }

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../nextjs-boilerplates/nextjs-boilerplate"
+		},
+		{
+			"path": "../nextjs-boilerplates/next-fe-helpers"
+		}
+	],
+	"settings": {}
+}
