@@ -3,7 +3,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   future: { compatibilityVersion: 4 },
 
+  devServer: {
+    port: 3001,
+  },
+
   modules: [
+    "nuxt-auth-utils",
     "@nuxt/eslint",
     "@nuxt/image",
     "@nuxt/icon",
@@ -19,6 +24,7 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
+    databaseUrl: process.env.DATABASE_URL ?? "",
     public: {
       env: process.env.NUXT_PUBLIC_ENV ?? "dev",
     },
@@ -28,14 +34,15 @@ export default defineNuxtConfig({
     pageTransition: false,
     head: {
       htmlAttrs: { lang: "en" },
-      title: "nuxt boilerplate",
+      title: "Invoice Generator",
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
           content:
-            "Generic Nuxt 4 boilerplate, with grid system and custom routing",
+            "Create, preview, and download professional invoices as PDF.",
         },
       ],
     },
@@ -43,9 +50,8 @@ export default defineNuxtConfig({
 
   site: {
     url: process.env.NUXT_SITE_URL || "https://example.com",
-    name: "nuxt boilerplate",
-    description:
-      "Generic Nuxt 4 boilerplate, with grid system and custom routing",
+    name: "Invoice Generator",
+    description: "Create, preview, and download professional invoices as PDF.",
     defaultLocale: "en",
   },
 

@@ -6,14 +6,21 @@ if (loggedIn.value) await navigateTo("/");
 
 const email = ref("");
 const password = ref("");
+const confirmPassword = ref("");
 const error = ref("");
 const loading = ref(false);
 
 async function submit() {
   error.value = "";
+
+  if (password.value !== confirmPassword.value) {
+    error.value = "Passwords do not match.";
+    return;
+  }
+
   loading.value = true;
   try {
-    await $fetch("/api/auth/login", {
+    await $fetch("/api/auth/register", {
       method: "POST",
       body: { email: email.value, password: password.value },
     });
@@ -35,7 +42,7 @@ async function submit() {
       <div :class="$style.brand" aria-hidden="true">
         <Icon name="ph:receipt" />
       </div>
-      <h1 :class="$style.title">Log in</h1>
+      <h1 :class="$style.title">Create account</h1>
 
       <form :class="$style.form" novalidate @submit.prevent="submit">
         <div :class="$style.field">
@@ -57,7 +64,20 @@ async function submit() {
             id="password"
             v-model="password"
             type="password"
-            autocomplete="current-password"
+            autocomplete="new-password"
+            required
+            :class="$style.input"
+            placeholder="At least 8 characters"
+          />
+        </div>
+
+        <div :class="$style.field">
+          <label for="confirm-password" :class="$style.label">Confirm password</label>
+          <input
+            id="confirm-password"
+            v-model="confirmPassword"
+            type="password"
+            autocomplete="new-password"
             required
             :class="$style.input"
             placeholder="••••••••"
@@ -69,13 +89,13 @@ async function submit() {
         </div>
 
         <button type="submit" :disabled="loading" :class="$style.submit">
-          {{ loading ? "Logging in…" : "Log in" }}
+          {{ loading ? "Creating account…" : "Create account" }}
         </button>
       </form>
 
       <p :class="$style.footer">
-        No account yet?
-        <NuxtLink to="/register" :class="$style.link">Create one</NuxtLink>
+        Already have an account?
+        <NuxtLink to="/login" :class="$style.link">Log in</NuxtLink>
       </p>
     </div>
   </div>

@@ -5,7 +5,7 @@
 onMounted(async () => {
   const { grid, stats } = await import("yg-vanilla-js-helpers");
   grid.init({
-    show: true,
+    show: false,
     columnsColor: "#ffffff11",
     columnsBorderColor: "#ffffff33",
     columnsBorderStyle: "solid",
