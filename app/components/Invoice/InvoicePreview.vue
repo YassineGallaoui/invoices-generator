@@ -21,6 +21,10 @@ defineProps<{
         paddingRight: `calc(${invoice.config.marginRight} * 0.75px)`,
         paddingBottom: `calc(${invoice.config.marginBottom} * 0.75px)`,
         paddingLeft: `calc(${invoice.config.marginLeft} * 0.75px)`,
+        // Override the root-level vars (set from the global Settings config)
+        // so the preview always reflects THIS invoice's config.
+        '--inv-base-px': String(invoice.config.baseFontPx),
+        '--inv-header-color': invoice.config.headerColor || 'transparent',
       }"
     >
       <!-- Preheader sits outside the flex body -->

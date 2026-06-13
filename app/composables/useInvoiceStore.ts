@@ -1,5 +1,4 @@
 import type { Invoice, InvoiceListEntry, ItemsSection } from "~/types/invoice";
-import { DEFAULT_INVOICE_CONFIG } from "~/types/invoice";
 
 /**
  * Forward-migrates a raw stored invoice to the current schema.
@@ -118,7 +117,9 @@ function createDefaultInvoice(id: string): Invoice {
     id,
     createdAt: now,
     updatedAt: now,
-    config: structuredClone(DEFAULT_INVOICE_CONFIG),
+    // New invoices inherit the user's saved settings (Settings page);
+    // each invoice keeps its own editable copy from here on.
+    config: loadGlobalInvoiceConfig(),
     preheader: {
       kind: "text",
       text: "Invoice",

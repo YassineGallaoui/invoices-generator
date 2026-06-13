@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Invoice, InvoiceConfig } from "~/types/invoice";
+import InvoiceBuilderConfig from "./InvoiceBuilderConfig.vue";
 import InvoiceBuilderFooter from "./InvoiceBuilderFooter.vue";
 import InvoiceBuilderItems from "./InvoiceBuilderItems.vue";
 import InvoiceBuilderParties from "./InvoiceBuilderParties.vue";
@@ -77,6 +78,12 @@ const localeOptions = [
       :notes-html="modelValue.notesHtml"
       @update:payment="patch({ payment: $event })"
       @update:notes-html="patch({ notesHtml: $event })"
+    />
+
+    <!-- Per-invoice overrides of the global Settings defaults -->
+    <InvoiceBuilderConfig
+      :model-value="modelValue.config"
+      @update:model-value="patch({ config: $event })"
     />
   </div>
 </template>
